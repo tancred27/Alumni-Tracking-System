@@ -56,7 +56,7 @@ const Login = (props) => {
     };
 
     return (
-        <div className="form-container">
+        <div className="card">
             <h1>
                 Account <span className="text-light">Login</span>
             </h1>

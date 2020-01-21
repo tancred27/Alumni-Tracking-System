@@ -42,25 +42,14 @@ const AuthState = (props) => {
     }
 
     // Register User: 
-    const register = async (id, formData) => {
+    const register = async formData => {
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
         }
-        let path;
-        if (id === '1'){
-            path = "college";
-        }
-        if (id === '2'){
-            path = "users";
-        }
-        if (id === '3'){
-            path = "dir";
-        }
         try {
-            const res = await axios.post(`/api/${path}`, formData, config);
-
+            const res = await axios.post('/api/users', formData, config);
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data

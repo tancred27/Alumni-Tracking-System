@@ -109,7 +109,6 @@ router.post('/:id',  [
             }, (err, token) => {
                 if(err) throw err;
                 res.json({ token });
-                console.log(token);
             });
 
         } catch (error) {

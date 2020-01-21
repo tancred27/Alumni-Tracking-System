@@ -20,7 +20,6 @@ import {
 
 const AlumniState = (props) => {
     const initialState = {
-        user: null,
         users: [],
         alumni: [],
         colleges: [],
