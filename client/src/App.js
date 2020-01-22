@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -19,7 +19,9 @@ import AlumniState from './context/alumni/AlumniState';
 
 
 if(localStorage.token){
-  setAuthToken(localStorage.token);  
+  setAuthToken(localStorage.token);
+  
+
 }
 
 const App = () => {
@@ -37,9 +39,8 @@ const App = () => {
                   <Route exact path="/about" component={About} />
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/register" component={Register} />
-                  <Route exact path="/alumni" component = {Alumni} />
-                  <Route exact path="/users" component = {Users} />
-                  <Route exact path="/colleges" component = {Colleges} />
+                  <PrivateRoute exact path="/alumni" component = {Alumni} />
+                  <PrivateRoute exact path="/users" component = {Users} />
                 </Switch>
               </div>
             </Fragment>

@@ -5,7 +5,7 @@ import AlumnusItem from './AlumnusItem';
 import AlumniContext from '../../context/alumni/alumniContext';
 import AlumniFilter from '../../context/alumni/AlumniFilter';
 
-const Alumni = () => {
+const Alumni = (props) => {
 
     const authContext = useContext(AuthContext);
 
@@ -35,7 +35,7 @@ const Alumni = () => {
             <TransitionGroup>
             {(filteredAlumni || alumni).map(alumnus => (
                 <CSSTransition key={alumnus._id} classNames="item" timeout={500}>
-                    <AlumnusItem alumnus={alumnus} />
+                    <AlumnusItem alumnus={alumnus} {...props} />
                 </CSSTransition>
             ))}
             </TransitionGroup>
