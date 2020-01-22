@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AlumniContext from '../../context/alumni/alumniContext';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect,Link } from 'react-router-dom';
 
-const AlumnusItem = ({ alumnus }) => {
+const AlumnusItem = (props) => {
     const alumniContext = useContext(AlumniContext);
     const { getProfile } = alumniContext;
-    const { _id, name, college, year, branch } = alumnus;
+    const { _id, name, college, year, branch } = props.alumnus;
 
     const onClick = () => {
         getProfile(_id);
-        return( 
-        <Redirect to='/login' />)
+        props.history.push('/about')
     }
     return (
         <div className="card bg-light">
