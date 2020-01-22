@@ -88,7 +88,7 @@ const AuthState = (props) => {
     }
 
     // Logout:
-    const logout = () => {
+    const logout = async () => {
         dispatch({ type: LOGOUT })
     }
 
