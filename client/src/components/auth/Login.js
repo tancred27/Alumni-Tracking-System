@@ -9,7 +9,7 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
 
     const { setAlert } = alertContext;
-    const { login, error, loadUser, clearErrors, isAuthenticated } = authContext;
+    const { login, error, clearErrors, isAuthenticated } = authContext;
 
     useEffect(() => {
         if(isAuthenticated){
@@ -52,7 +52,6 @@ const Login = (props) => {
             email,
             password
         });
-        loadUser(id);
     };
 
     return (

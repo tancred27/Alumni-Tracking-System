@@ -175,7 +175,7 @@ const AlumniState = (props) => {
                 alumni: state.alumni,
                 colleges: state.colleges,
                 filteredColleges: state.filteredColleges,
-                filteredAlumni: state.filterAlumni,
+                filteredAlumni: state.filteredAlumni,
                 error: state.error,
                 getProfile,
                 getMyProfile,

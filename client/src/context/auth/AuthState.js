@@ -17,7 +17,7 @@ import {
 const AuthState = (props) => {
     const initialState = {
         token: localStorage.getItem('token'),
-        isAuthenticated: null,
+        isAuthenticated: false,
         loading: true,
         user: null,
         error: null
@@ -35,7 +35,7 @@ const AuthState = (props) => {
 
             dispatch({ type: USER_LOADED, payload: res.data });
            
-        } catch (error) {
+        }catch(error) {
             dispatch({ type: AUTH_ERROR });
         }
     
@@ -54,11 +54,11 @@ const AuthState = (props) => {
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
-            loadUser();
+            loadUser(2);
 
         } catch (error) {
             dispatch({
-                type: LOGIN_FAIL,
+                type: REGISTER_FAIL,
                 payload: error.response.data.msg
             });
         }
@@ -81,7 +81,7 @@ const AuthState = (props) => {
 
         } catch (error) {
             dispatch({
-                type: REGISTER_FAIL,
+                type: LOGIN_FAIL,
                 payload: error.response.data.msg
             });
         }

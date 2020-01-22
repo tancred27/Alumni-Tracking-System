@@ -65,8 +65,6 @@ export default (state, action) => {
                 })
             };
 
-        default: 
-        return state;
 
         case CLEAR_COL_FILTER:
             return{
@@ -92,5 +90,8 @@ export default (state, action) => {
                 ...state,
                 error: action.payload
             };
+
+        default: 
+            return state;
     }
 }

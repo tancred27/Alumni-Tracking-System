@@ -201,6 +201,10 @@ img {
   grid-gap: 1rem;
 }
 
+.button1{
+  background-color: #000000; /* Black */
+}
+
 .btn {
   display: inline-block;
   background: var(--light-color);

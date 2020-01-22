@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect } from 'react';
-import AlumniContext from '../../context/alumni/alumniContext';;
+import AlumniContext from './alumniContext';
 
 const AlumniFilter = () => {
     const alumniContext = useContext(AlumniContext);

@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-//import AlumniContext from '../../context/alumni/AlumniContext';
+import AlumniContext from '../../context/alumni/alumniContext';
+import { Route, Redirect } from 'react-router-dom';
 
 const AlumnusItem = ({ alumnus }) => {
-    //const alumniContext = useContext(AlumniContext);
-    const { name, college, year, branch } = alumnus;
+    const alumniContext = useContext(AlumniContext);
+    const { getProfile } = alumniContext;
+    const { _id, name, college, year, branch } = alumnus;
 
+    const onClick = () => {
+        getProfile(_id);
+        return( 
+        <Redirect to='/login' />)
+    }
     return (
         <div className="card bg-light">
             <h3 className="text-primary text-left">
                 Name: {name}
             </h3>
             <ul className="list">
-                College: {college && (<li>
+                College:<li>
                     <i className="fas fa-envelope-open"></i> {college}
-                </li>)}
-                Branch: {branch && (<li>
+                </li>
+                Branch:<li>
                     <i className="fas fa-phone"></i> {branch}
-                </li>)}
-                Year: {year && (<li>
+                </li>
+                Year:<li>
                     <i className="fas fa-phone"></i> {year}
-                </li>)}
+                </li>
+                <div>
+                <input type="submit" onClick = {onClick} value="Profile" className="btn btn-dark btn-block"/>
+            </div>
             </ul>
         </div>
     );

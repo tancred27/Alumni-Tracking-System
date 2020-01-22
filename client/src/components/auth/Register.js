@@ -83,7 +83,8 @@ const Register = props => {
                 </div>
                 <div className="form-group">
                 <label htmlFor="year">College</label>
-                <select name = "college" value={college} onChange={onChange} required>
+                <select name= "college" value={college} onChange={onChange} required>
+                    <option>--Select--</option>
                     <option name="cvr">CVR</option> 
                     <option name="cvsr">CVSR</option>
                     <option name="mvsr">MVSR</option>
@@ -92,6 +93,7 @@ const Register = props => {
                 <div className="form-group">
                     <label htmlFor="branch">Branch</label>
                     <select name="branch" value={branch} onChange={onChange} required>
+                        <option>--Select--</option>
                         <option name="cse">Cse</option> 
                         <option name="mech">Mech</option>
                         <option name="ece">Ece</option>
@@ -102,6 +104,7 @@ const Register = props => {
                 <div className="form-group">
                     <label htmlFor="year">Passed out in year</label>
                     <select name="year" value={year} onChange={onChange} required>
+                        <option>--Select--</option>
                         <option name="2019">2019</option> 
                         <option name="2018">2018</option>
                         <option name="2017">2017</option>

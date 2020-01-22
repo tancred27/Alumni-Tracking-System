@@ -1,16 +1,17 @@
-import React from 'react';
-import Alumni from '../Alumni/Alumni';
-import AlumniFilter from '../Alumni/AlumniFilter';
+import React, { useEffect, useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
+    const authContext = useContext(AuthContext);
+    useEffect(()=>{
+        authContext.loadUser(1);
+        // eslint-disable-next-line
+    }, [])
     return (
-        <div className="grid-2">
-            <div>
-                <AlumniFilter />
-                <Alumni />
-            </div>
+        <div>
+            <h1>Home</h1>
         </div>
-    );
+    )
 };
 
 export default Home

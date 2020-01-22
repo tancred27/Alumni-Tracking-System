@@ -35,6 +35,7 @@ const Navbar = ({ title, icon }) => {
     const collegeLinks = (
         <Fragment>
             <li><Link to='/about'>About</Link></li>
+            <li><Link to='/users'>Users</Link></li>
             <li><Link to='/alumni'>Alumni</Link></li>
             <li><Link to='/colleges'>Colleges</Link></li>
             <li>
