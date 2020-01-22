@@ -14,6 +14,7 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Alumni from './components/Alumni/Alumni';
 import Users from './components/Users/Users';
+import Colleges from './components/College/Colleges';
 import AlumniState from './context/alumni/AlumniState';
 
 
@@ -38,6 +39,7 @@ const App = () => {
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/alumni" component = {Alumni} />
                   <Route exact path="/users" component = {Users} />
+                  <Route exact path="/colleges" component = {Colleges} />
                 </Switch>
               </div>
             </Fragment>

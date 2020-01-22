@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AlumniContext from '../../context/alumni/alumniContext';
-import { Route, Redirect } from 'react-router-dom';
+//import { Route, Redirect } from 'react-router-dom';
 
 const AlumnusItem = ({ alumnus }) => {
     const alumniContext = useContext(AlumniContext);
@@ -10,8 +10,6 @@ const AlumnusItem = ({ alumnus }) => {
 
     const onClick = () => {
         getProfile(_id);
-        return( 
-        <Redirect to='/login' />)
     }
     return (
         <div className="card bg-light">
