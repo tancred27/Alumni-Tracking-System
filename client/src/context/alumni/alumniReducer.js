@@ -11,7 +11,9 @@ import {
     FILTER_COLLEGES,
     FILTER_ALUMNI,
     CLEAR_COL_FILTER,
-    CLEAR_AL_FILTER
+    CLEAR_AL_FILTER,
+    SET_CURRENT_COLLEGE,
+    SET_CURRENT_ALUMNUS
 } from '../types';
 
 export default (state, action) => {
@@ -89,6 +91,18 @@ export default (state, action) => {
             return{
                 ...state,
                 error: action.payload
+            };
+
+        case SET_CURRENT_COLLEGE:
+            return{
+                ...state,
+                currentCollegeId : action.payload
+            };
+        
+        case SET_CURRENT_ALUMNUS:
+            return{
+                ...state,
+                currentAlumnusId : action.payload
             };
 
         default: 

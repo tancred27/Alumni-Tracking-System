@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -41,6 +40,7 @@ const App = () => {
                   <Route exact path="/register" component={Register} />
                   <PrivateRoute exact path="/alumni" component = {Alumni} />
                   <PrivateRoute exact path="/users" component = {Users} />
+                  <PrivateRoute exact path="/colleges" component={Colleges} />
                 </Switch>
               </div>
             </Fragment>

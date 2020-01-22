@@ -4,30 +4,45 @@ import AuthContext from '../../context/auth/authContext';
 import AlumnusItem from './AlumnusItem';
 import AlumniContext from '../../context/alumni/alumniContext';
 import AlumniFilter from '../../context/alumni/AlumniFilter';
+import jwt from 'jsonwebtoken';
 
-const Alumni = (props) => {
+const Alumni = () => {
 
     const authContext = useContext(AuthContext);
 
-    const { user } = authContext;
+    const { user, loadUser } = authContext;
     const alumniContext = useContext(AlumniContext);
     
-    const { alumni, getAlumni, filteredAlumni } = alumniContext;
+    const { alumni, getAlumni, filteredAlumni, currentCollegeId } = alumniContext;
 
     useEffect(() => {
-        authContext.loadUser(1);
+        if(localStorage.token){
+            const decoded = jwt.verify(localStorage.token, 'secrettoken');
+            if(decoded.user){
+                loadUser(2)
+                console.log('okieee');
+            }
+            
+            else if(decoded.college){
+                loadUser(1)
+            }
+            else{
+                loadUser(3)
+            }
+        }
         try{
-            getAlumni(user._id);
+            getAlumni(currentCollegeId || user._id);
         }
         catch(err){
            console.log(err.message);
         }
         // eslint-disable-next-line
-    }, [user]);
+    }, []);
 
     if(alumni.length === 0){
-        return <h4>Please add a contact!</h4>
+        return <h4>Loading!</h4>
     }
+
 
     return (
         <Fragment>
@@ -35,7 +50,7 @@ const Alumni = (props) => {
             <TransitionGroup>
             {(filteredAlumni || alumni).map(alumnus => (
                 <CSSTransition key={alumnus._id} classNames="item" timeout={500}>
-                    <AlumnusItem alumnus={alumnus} {...props} />
+                    <AlumnusItem alumnus={alumnus}  />
                 </CSSTransition>
             ))}
             </TransitionGroup>

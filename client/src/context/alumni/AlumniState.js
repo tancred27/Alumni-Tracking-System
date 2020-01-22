@@ -15,7 +15,9 @@ import {
     FILTER_COLLEGES,
     FILTER_ALUMNI,
     CLEAR_COL_FILTER,
-    CLEAR_AL_FILTER
+    CLEAR_AL_FILTER,
+    SET_CURRENT_COLLEGE,
+    SET_CURRENT_ALUMNUS
 } from '../types';
 
 const AlumniState = (props) => {
@@ -23,6 +25,8 @@ const AlumniState = (props) => {
         users: [],
         alumni: [],
         colleges: [],
+        currentCollegeId: null,
+        currentAlumnusId: null,
         filteredColleges: null,
         filteredAlumni: null,
         error: null
@@ -56,7 +60,23 @@ const AlumniState = (props) => {
                 payload: err.response.msg
             });
         }
-    }
+    };
+
+    // Set Current College ID:
+    const setCurrentCollegeId = id =>{
+        dispatch({
+            type: SET_CURRENT_COLLEGE,
+            payload: id
+        })
+    };
+
+    // Set Current Alumnus:
+    const setCurrentAlumnusId = id =>{
+        dispatch({
+            type: SET_CURRENT_ALUMNUS,
+            payload: id
+        })
+    };
 
     // Get Alumni:
     const getAlumni = async id => {
@@ -187,7 +207,9 @@ const AlumniState = (props) => {
                 filterColleges,
                 filterAlumni,
                 clearAlFilter,
-                clearColFilter
+                clearColFilter,
+                setCurrentAlumnusId,
+                setCurrentCollegeId
             }}>
                 {props.children}
             </AlumniContext.Provider>
