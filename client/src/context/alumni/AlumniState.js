@@ -47,7 +47,7 @@ const AlumniState = (props) => {
     // Get Own Profile:
     const getMyProfile = async () => {
         try{
-            const res = await axios.get('/api/userauth');
+            const res = await axios.get('/api/auth');
             dispatch({ type: GET_MY_PROFILE, payload: res.data });
         }
         catch(err){

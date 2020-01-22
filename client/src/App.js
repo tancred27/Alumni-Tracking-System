@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Navbar from './components/layout/Navbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -14,6 +14,7 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Alumni from './components/Alumni/Alumni';
 import Users from './components/Users/Users';
+import Colleges from './components/College/Colleges';
 import AlumniState from './context/alumni/AlumniState';
 
 

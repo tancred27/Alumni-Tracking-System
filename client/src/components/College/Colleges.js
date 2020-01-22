@@ -1,41 +1,36 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import AuthContext from '../../context/auth/authContext';
-import AlumnusItem from './AlumnusItem';
+import CollegeItem from './CollegeItem';
 import AlumniContext from '../../context/alumni/alumniContext';
-import AlumniFilter from '../../context/alumni/AlumniFilter';
+import CollegeFilter from '../../context/alumni/CollegeFilter';
 
-const Alumni = (props) => {
+const Colleges = () => {
 
-    const authContext = useContext(AuthContext);
-
-    const { user } = authContext;
     const alumniContext = useContext(AlumniContext);
-    
-    const { alumni, getAlumni, filteredAlumni } = alumniContext;
+
+    const { filteredColleges, colleges, getColleges } = alumniContext;
 
     useEffect(() => {
-        authContext.loadUser(1);
         try{
-            getAlumni(user._id);
+            getColleges();
         }
         catch(err){
            console.log(err.message);
         }
         // eslint-disable-next-line
-    }, [user]);
+    }, []);
 
-    if(alumni.length === 0){
+    if(colleges.length === 0){
         return <h4>Please add a contact!</h4>
     }
 
     return (
         <Fragment>
-            <AlumniFilter />
+            <CollegeFilter />
             <TransitionGroup>
-            {(filteredAlumni || alumni).map(alumnus => (
+            {(filteredColleges || colleges).map(alumnus => (
                 <CSSTransition key={alumnus._id} classNames="item" timeout={500}>
-                    <AlumnusItem alumnus={alumnus} {...props} />
+                    <CollegeItem alumnus={alumnus} />
                 </CSSTransition>
             ))}
             </TransitionGroup>
@@ -43,4 +38,4 @@ const Alumni = (props) => {
     );
 };
 
-export default Alumni;
+export default Colleges;
