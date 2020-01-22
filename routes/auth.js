@@ -45,7 +45,7 @@ router.get('/:id', auth, async(req, res) => {
             res.status(500).send('Server Error!');
         }
     }
-    res.send('Get logged in Account');
+   
 });
 
 // @router   POST api/auth/:id
