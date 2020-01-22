@@ -93,7 +93,7 @@ const AuthState = (props) => {
     }
 
     // Clear Errors:
-    const clearErrors = () => {
+    const clearErrors = async () => {
         dispatch({ type: CLEAR_ERRORS })
     }
 
