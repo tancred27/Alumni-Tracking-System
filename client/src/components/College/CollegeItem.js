@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 //import AlumniContext from '../../context/alumni/alumniContext';
 //import { Route, Redirect } from 'react-router-dom';
 
-const CollegeItem = ({ alumnus }) => {
-    const { name } = alumnus;
+const CollegeItem = ({ college }) => {
+    const { name } = college;
 
     const onClick = () => {
         alert('Getting Alumni');
@@ -24,7 +24,7 @@ const CollegeItem = ({ alumnus }) => {
 };
 
 CollegeItem.propTypes = {
-    alumnus: PropTypes.object.isRequired
+    college: PropTypes.object.isRequired
 };
 
 export default CollegeItem;

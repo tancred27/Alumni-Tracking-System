@@ -28,9 +28,9 @@ const Colleges = () => {
         <Fragment>
             <CollegeFilter />
             <TransitionGroup>
-            {(filteredColleges || colleges).map(alumnus => (
-                <CSSTransition key={alumnus._id} classNames="item" timeout={500}>
-                    <CollegeItem alumnus={alumnus} />
+            {(filteredColleges || colleges).map(college => (
+                <CSSTransition key={college._id} classNames="item" timeout={500}>
+                    <CollegeItem college={college} />
                 </CSSTransition>
             ))}
             </TransitionGroup>
