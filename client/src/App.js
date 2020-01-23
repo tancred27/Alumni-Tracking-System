@@ -19,8 +19,6 @@ import AlumniState from './context/alumni/AlumniState';
 
 if(localStorage.token){
   setAuthToken(localStorage.token);
-  
-
 }
 
 const App = () => {
@@ -39,6 +37,9 @@ const App = () => {
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/register" component={Register} />
                   <PrivateRoute exact path="/alumni" component = {Alumni} />
+                  <PrivateRoute exact path="/alumni/:id" render={props=>(
+                    <Alumni {...props} />
+                  )} />
                   <PrivateRoute exact path="/users" component = {Users} />
                   <PrivateRoute exact path="/colleges" component={Colleges} />
                 </Switch>

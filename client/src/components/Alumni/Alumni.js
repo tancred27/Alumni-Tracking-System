@@ -6,7 +6,7 @@ import AlumniContext from '../../context/alumni/alumniContext';
 import AlumniFilter from '../../context/alumni/AlumniFilter';
 import jwt from 'jsonwebtoken';
 
-const Alumni = () => {
+const Alumni = (props) => {
 
     const authContext = useContext(AuthContext);
 
@@ -20,9 +20,7 @@ const Alumni = () => {
             const decoded = jwt.verify(localStorage.token, 'secrettoken');
             if(decoded.user){
                 loadUser(2)
-                console.log('okieee');
             }
-            
             else if(decoded.college){
                 loadUser(1)
             }
@@ -31,7 +29,7 @@ const Alumni = () => {
             }
         }
         try{
-            getAlumni(currentCollegeId || user._id);
+            getAlumni(props.id || user._id);
         }
         catch(err){
            console.log(err.message);

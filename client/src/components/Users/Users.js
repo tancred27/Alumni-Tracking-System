@@ -22,7 +22,7 @@ const Users = () => {
            console.log(err.message);
         }
         // eslint-disable-next-line
-    }, [user]);
+    }, []);
 
     if(users.length === 0){
         return <h4>Please add a contact!</h4>
