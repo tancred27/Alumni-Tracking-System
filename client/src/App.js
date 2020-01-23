@@ -15,6 +15,7 @@ import Alumni from './components/Alumni/Alumni';
 import Users from './components/Users/Users';
 import Colleges from './components/College/Colleges';
 import AlumniState from './context/alumni/AlumniState';
+import Profile from './components/pages/Profile'
 
 
 if(localStorage.token){
@@ -42,6 +43,7 @@ const App = () => {
                   )} />
                   <PrivateRoute exact path="/users" component = {Users} />
                   <PrivateRoute exact path="/colleges" component={Colleges} />
+                  <PrivateRoute path="/profile/:id" component={Profile}/>
                 </Switch>
               </div>
             </Fragment>

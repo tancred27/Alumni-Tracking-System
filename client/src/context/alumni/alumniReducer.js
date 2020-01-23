@@ -35,9 +35,12 @@ export default (state, action) => {
                 ...state,
                 colleges: action.payload
             };
-
-        case GET_MY_PROFILE:
         case GET_PROFILE:
+            return{
+                ...state,
+                users:[action.payload]
+            }
+        case GET_MY_PROFILE:
             return{
                 ...state,
                 user: action.payload
