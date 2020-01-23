@@ -10,6 +10,7 @@ const AlumnusItem = (props) => {
 
     const onClick = () => {
         getProfile(_id);
+        props.history.push('/profile')
     }
     return (
         <div className="card bg-light">

@@ -32,7 +32,7 @@ const AuthState = (props) => {
         }
         try {
             const res = await axios.get(`/api/auth/${id}`);
-
+            
             dispatch({ type: USER_LOADED, payload: res.data });
            
         }catch(error) {
@@ -73,11 +73,13 @@ const AuthState = (props) => {
         }
         try {
             const res = await axios.post(`/api/auth/${id}`, formData, config);
+            
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
             loadUser(id);
+            
 
         } catch (error) {
             dispatch({

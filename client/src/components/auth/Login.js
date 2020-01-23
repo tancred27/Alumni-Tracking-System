@@ -10,9 +10,6 @@ const Login = (props) => {
 
     const { setAlert } = alertContext;
     const { login, error, clearErrors, isAuthenticated,loadUser } = authContext;
-    useEffect(()=>{
-     loadUser(1);
-    },[])
     useEffect(() => {
         if(isAuthenticated){
             props.history.push('/');

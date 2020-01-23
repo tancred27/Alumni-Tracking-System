@@ -15,7 +15,7 @@ const Alumni = (props) => {
     const { alumni, getAlumni, filteredAlumni } = alumniContext;
 
     useEffect(() => {
-        authContext.loadUser(1);
+       authContext.loadUser(1);
         try{
             getAlumni(user._id);
         }
