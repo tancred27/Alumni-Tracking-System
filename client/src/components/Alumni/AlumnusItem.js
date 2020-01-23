@@ -1,12 +1,19 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import AlumniContext from '../../context/alumni/alumniContext';
-//import { Route, Redirect,Link } from 'react-router-dom';
+import { Route, Redirect,Link } from 'react-router-dom';
 
-const AlumnusItem = (alumnus) => {
+const AlumnusItem =(props) => {
     const alumniContext = useContext(AlumniContext);
     const { setCurrentAlumnusId } = alumniContext;
-    const { _id, name, college, year, branch } = alumnus;
+    const { _id, name, college, year, branch } =props.alumnus;
+    
+   const onClick=(e)=>{
+    setCurrentAlumnusId(_id);
+    console.log('onClick')
+    console.log(props)
+    //props.history.push('/profile')
+   }
 
     return (
         <div className="card bg-light">
@@ -24,7 +31,7 @@ const AlumnusItem = (alumnus) => {
                     <i className="fas fa-phone"></i> {year}
                 </li>
                 <div>
-            <a href="/"><button type="submit" value="View Profile" onClick={() => setCurrentAlumnusId(_id)}>View Profile</button></a>
+            <Link to={`/profile/${_id}`}><button type="button" value="View Profile" onClick={onClick}>View Profile</button></Link>
             </div>
             </ul>
         </div>
