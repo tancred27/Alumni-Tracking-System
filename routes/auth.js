@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator/check');
-
 const College = require('../models/College');
 const User = require('../models/User');
 const Directorate = require('../models/Directorate');

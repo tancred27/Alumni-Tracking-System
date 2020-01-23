@@ -9,7 +9,10 @@ const Login = (props) => {
     const authContext = useContext(AuthContext);
 
     const { setAlert } = alertContext;
-    const { login, error, clearErrors, isAuthenticated,loadUser } = authContext;
+    const { login, error, clearErrors, isAuthenticated } = authContext;
+    /* useEffect(()=>{
+     loadUser(1);
+    },[]) */
     useEffect(() => {
         if(isAuthenticated){
             props.history.push('/');
@@ -35,13 +38,13 @@ const Login = (props) => {
 
     const onSubmit = e => {
         let id;
-        if(type === "Directorate"){
+        if(type === 'Directorate'){
             id = '3';
         }
-        else if(type === "Alumnus"){
+        else if(type === 'Alumnus'){
             id = '2';
         }
-        else if(type === "College"){
+        else if(type === 'College'){
             id = '1';
         }
         else{console.log('something is wrong')}
