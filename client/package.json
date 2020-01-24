@@ -11,7 +11,9 @@
     "react-scripts": "3.3.0",
     "react-transition-group": "^4.3.0",
     "uuid": "^3.3.3",
-    "bootstrap": "^4.4.1"
+    "bootstrap": "^4.4.1",
+    "nodemailer": "6.4.2",
+    "nexmo": "2.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
