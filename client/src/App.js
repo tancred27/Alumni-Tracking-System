@@ -16,6 +16,7 @@ import Users from './components/Users/Users';
 import Colleges from './components/College/Colleges';
 import AlumniState from './context/alumni/AlumniState';
 import Profile from './components/pages/Profile'
+import Update from './components/auth/Update';
 
 
 if(localStorage.token){
@@ -37,6 +38,7 @@ const App = () => {
                   <Route exact path="/about" component={About} />
                   <Route exact path="/login" component={Login} /> 
                   <Route exact path="/register" component={Register} />
+                  <Route exact path="/update" component={Update} />
                   <PrivateRoute exact path="/alumni" component = {Alumni} />
                   <PrivateRoute exact path="/alumni/:id" component={Alumni} />
                   <PrivateRoute exact path="/users" component = {Users} />

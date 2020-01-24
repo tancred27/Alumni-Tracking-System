@@ -9,10 +9,13 @@ const EmailForm = () => {
 
     const alumniContext = useContext(AlumniContext);
 
-    const { sendEmail } = alumniContext;
+    const { sendEmail,user } = alumniContext;
 
     const { loadUser } = authContext;
 
+    let autoMail="";
+     if(user){
+    autoMail=user.email}
 
     useEffect(() => {
         if(localStorage.token){
@@ -29,9 +32,9 @@ const EmailForm = () => {
         }
         // eslint-disable-next-line
     }, []);
-
+   
     const [mail, setMail] = useState({
-        email: '',
+        email: autoMail,
         subject: '',
         text: ''
     });

@@ -176,14 +176,14 @@ const AlumniState = (props) => {
     };
 
     // Update alumni profile:
-    const updateProfile = async () => {
+    const updateProfile = async formData => {
         const config = {
             headers: {
                 'Content-Type' : 'application/json'
             }
         }
         try{
-            const res = await axios.put(`/api/users`, config);
+            const res = await axios.put(`/api/users`, formData, config);
             dispatch({
                 type: UPDATE_PROFILE,
                 payload: res.data

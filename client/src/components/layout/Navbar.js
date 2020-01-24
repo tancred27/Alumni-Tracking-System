@@ -2,8 +2,17 @@ import React, { useContext, Fragment } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import jwt from 'jsonwebtoken';
 
 const Navbar = ({ title, icon }) => {
+
+
+    var decoded;
+    if(localStorage.getItem('token')){
+    
+        decoded = jwt.verify(localStorage.token, 'secrettoken');
+
+    }
 
     const authContext = useContext(AuthContext);
 
@@ -22,10 +31,10 @@ const Navbar = ({ title, icon }) => {
 
     const userLinks = (
         <Fragment>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to = '/'>Profile</Link></li>
+            <li><Link to = {`/`}>Home</Link></li>
+            <li><Link to='/update'>Update</Link></li>
             <li><Link to='/users'>Users</Link></li>
-            <li><Link to='/about'>About</Link></li>
+            
             <li><Link to='/colleges'>Colleges</Link></li>
             <li>
                 <a onClick={onLogout} href="/#!">
@@ -64,12 +73,12 @@ const Navbar = ({ title, icon }) => {
     )
 
     let links = '';
-    if (isAuthenticated){
+    if (decoded){
         try{
-            if (user.isUser){
+            if (decoded.user){
                 links = userLinks
             }
-            else if (user.isCollege){
+            else if (decoded.college){
                 links = collegeLinks
             }
             else{

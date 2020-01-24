@@ -29,13 +29,14 @@ const Register = props => {
         phone: '',
         college: '',
         branch: '',
+        company: 'studying',
         year: '',
         info: '',
         password: '',
         password2: ''
     });
  
-    const { name, email, dob, phone, college, branch, year, info, password, password2 } = user;
+    const { name, email, dob, phone, college, branch, company, year, info, password, password2 } = user;
 
     const onChange = e => setUser({ ...user, [e.target.name]: e.target.value })
 
@@ -51,6 +52,7 @@ const Register = props => {
                 dob, 
                 phone,
                 college,
+                company,
                 branch,
                 year,
                 info,
@@ -80,6 +82,10 @@ const Register = props => {
                 <div className="form-group">
                     <label htmlFor="phone">Mobile Number</label>
                     <input name="phone" value={phone} onChange={onChange} type="text" required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="company">Company</label>
+                    <input name="company" value={company} onChange={onChange} type="text" />
                 </div>
                 <div className="form-group">
                 <label htmlFor="year">College</label>

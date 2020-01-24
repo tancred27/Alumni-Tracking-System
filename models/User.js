@@ -5,6 +5,11 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    company: {
+        type: String,
+        required: true,
+        default : 'studying'
+    },
     email: {
         type: String,
         required: true,

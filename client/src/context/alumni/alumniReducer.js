@@ -67,7 +67,7 @@ export default (state, action) => {
                 ...state,
                 filteredAlumni: state.alumni.filter(alumnus => {
                     const regex = new RegExp(`${action.payload}`, 'gi');
-                    return alumnus.name.match(regex) || alumnus.college.match(regex) || alumnus.year.match(regex) || alumnus.branch.match(regex);
+                    return alumnus.name.match(regex) || alumnus.college.match(regex) || alumnus.year.match(regex) || alumnus.company.match(regex) ||alumnus.branch.match(regex);
                 })
             };
 

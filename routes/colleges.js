@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-
 const User = require('../models/User');
 const College = require('../models/College');
 
@@ -95,7 +94,7 @@ router.get('/:id', auth, async(req, res) => {
 });
 
 // @router   PUT api/college/:id
-// @desc     Authenticate a user
+// @desc     Update user profile/authenticate
 // @access   Private
 router.put('/:id', auth, async (req, res) => {
     //check if college exists
@@ -113,7 +112,7 @@ router.put('/:id', auth, async (req, res) => {
     try {   
         user = await User.findOneAndUpdate({ _id: req.params.id },
             { $set: {authenticated: true} },
-            { new: true});
+            { new: true });
         res.json(user);
 
     } catch (error) {

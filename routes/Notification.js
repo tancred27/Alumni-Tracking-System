@@ -16,7 +16,7 @@ router.put('/req',auth,async(req,res)=>{
     let field2={}
     const {request,accept}=req.body
     console.log("request sent")
-    console.log(req.body)
+    console.log(req.body);
     try{
         //sender
        let notf1=await Notification.findOne({id:request})

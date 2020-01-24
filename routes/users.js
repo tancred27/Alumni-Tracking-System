@@ -25,7 +25,7 @@ router.post('/',
             return res.status(400).json({ errors: errors.array()});
         } 
         
-        const { name, email, dob, phone, college, branch, year, info, password } = req.body;
+        const { name, email, dob, phone, company, college, branch, year, info, password } = req.body;
 
     
         try {
@@ -40,6 +40,7 @@ router.post('/',
                 dob,
                 phone,
                 college,
+                company,
                 branch,
                 year,
                 info,
@@ -112,12 +113,12 @@ router.put('/', auth, async (req, res) => {
 
     if(!user) return res.status(404).json({ msg: 'User not found' }); 
 
-    const { email, phone, info, password } = req.body;
+    const { email, company, info, password } = req.body;
 
     // Build User Object:
     const userFields = {};
     if(email) userFields.email = email;
-    if(phone) userFields.phone = phone;
+    if(company) userFields.company = company;
     if(info) userFields.info = info;
     if(password) userFields.type = password;
     

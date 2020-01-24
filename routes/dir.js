@@ -124,8 +124,8 @@ router.put('/', auth, async(req, res) => {
 router.put('/1', async(req, res) => {
     try {
 
-       // const recipient = req.body.to;
-       // const message = req.body.text;
+       const recipient = req.body.to;
+       const message = req.body.text;
 
         const nexmo = new Nexmo({
         apiKey: '537ad656',
@@ -133,8 +133,8 @@ router.put('/1', async(req, res) => {
         });
 
         const from = 'Nexmo';
-        const to = '919381582890';
-        const text = 'Hello from Nexmo';
+        const to = "91"+recipient;
+        const text = message;
 
         nexmo.message.sendSms(from, to, text);
         res.send('done')

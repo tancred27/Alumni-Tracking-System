@@ -12,7 +12,7 @@ app.use(express.json({ extended: false }));
 
 //app.get('/', (req, res) => res.send("Hello World!"));
 
-const PORT = process.env.PORT || 5000;
+
 
 // Define Routes:
 app.use('/api/users', require('./routes/users'));
@@ -21,18 +21,13 @@ app.use('/api/college', require('./routes/colleges'));
 app.use('/api/dir', require('./routes/dir'));
 app.use('/api/notf', require('./routes/Notification'));
 
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static('client/build'))
+
+    app.use('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+}
+
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on Port : ${PORT}`));
-
-const io=require('socket.io')(3003)
-
-io.on('connection',socket=>{
-    console.log('new user')
-    socket.on('joined',msg=>{
-        socket.broadcast.emit('reply',msg + " :joined")
-    })
-    socket.on('message',msg=>{
-        socket.broadcast.emit('reply',msg)
-        console.log(msg)
-    })
-})
 

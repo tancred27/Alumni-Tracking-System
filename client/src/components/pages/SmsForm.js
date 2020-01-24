@@ -9,9 +9,13 @@ const SmsForm = () => {
 
     const alumniContext = useContext(AlumniContext);
 
-    const { sendSms } = alumniContext;
+    const { sendSms,user } = alumniContext;
 
     const { loadUser } = authContext;
+
+    let autoSMS="";
+     if(user){
+    autoSMS=user.phone}
 
 
     useEffect(() => {
@@ -31,7 +35,7 @@ const SmsForm = () => {
     }, []);
 
     const [sms, setSms] = useState({
-        to: '',
+        to: autoSMS,
         text: ''
     });
 

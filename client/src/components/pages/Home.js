@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import jwt from 'jsonwebtoken';
 import EmailForm from './EmailForm';
 import SmsForm from './SmsForm';
-import ProfileItem from './ProfileItem';
+import Profile from './Profile';
 import { Redirect } from 'react-router-dom';
 
 const Home = (props) => {
@@ -21,12 +21,11 @@ const Home = (props) => {
                 <SmsForm />
             </Fragment>
         )
-    }
-
+        }
     else{
         return (
             <div>
-                Home
+                <Redirect to="/about"/>
             </div>
         )
     }
