@@ -16,6 +16,7 @@ const UserItem = ({ alumnus }) => {
             <Link to={`/profile/${_id}`}><button type="button" className="btn btn-dark" value="View Profile">View Profile</button></Link>
             </div>
             </ul>
+           <Link to={`/profile/${_id}`}><input type="button" className="btn btn-dark" value="Profile"/></Link> 
         </div>
     );
 };

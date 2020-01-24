@@ -1,19 +1,30 @@
 import React, { Fragment ,useContext,useEffect} from 'react'
 import ProfileItem from './ProfileItem'
 import AlumniContext from '../../context/alumni/alumniContext'
+import jwt from 'jsonwebtoken';
+
 const Profile = (props) => {
   const alumniContext =useContext(AlumniContext);
-
-  const { getProfile, user } = alumniContext;
+  let alumni=true;
   useEffect(()=>{
     console.log(props.match.params.id)
-    getProfile(props.match.params.id);
-    // eslint-disable-next-line
+    alumniContext.getProfile(props.match.params.id);
+    if(localStorage.token){
+      const decoded = jwt.verify(localStorage.token, 'secrettoken')
+      if(decoded.user){
+        alumni=true;
+        alumniContext.getNotifications(decoded.user.id);
+        
+      }else{
+        alumni=false;
+      }
+    }
+    
   },[])
   
   return (
-    <Fragment>{user == null ? <h2>loading</h2>:
-      <ProfileItem user={user}/>}
+    <Fragment>{alumniContext.users.length==0&&(alumni!=true||alumniContext.notification)?<h2>loading</h2>:
+      <ProfileItem user={alumniContext.users[0]} notf={alumniContext.notification} alumni={alumni}/>}
     </Fragment>
   )
 }

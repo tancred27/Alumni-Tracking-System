@@ -17,7 +17,8 @@ import {
     CLEAR_COL_FILTER,
     CLEAR_AL_FILTER,
     SET_CURRENT_COLLEGE,
-    SET_CURRENT_ALUMNUS
+    SET_CURRENT_ALUMNUS,
+    LOAD_NOTIFICATIONS
 } from '../types';
 
 const AlumniState = (props) => {
@@ -30,7 +31,12 @@ const AlumniState = (props) => {
         currentAlumnusId: null,
         filteredColleges: null,
         filteredAlumni: null,
-        error: null
+        error: null,
+        notification:{
+            friends:[],
+            accept:[],
+            request:[]
+        }
     };
 
     const [state, dispatch] = useReducer(alumniReducer, initialState);
@@ -40,6 +46,20 @@ const AlumniState = (props) => {
         try{
             const res = await axios.get(`/api/users/${id}`);
             dispatch({ type: GET_PROFILE, payload: res.data })
+        }
+        catch(err){
+            dispatch({
+                type: ALUMNI_ERROR,
+                payload: err.response.msg
+            });
+        }
+    };
+
+    // Get any authenticated user profile:
+    const getAuthUsers = async () => {
+        try{
+            const res = await axios.get(`/api/users/auth/`);
+            dispatch({ type: GET_USERS, payload: res.data })
         }
         catch(err){
             dispatch({
@@ -127,7 +147,7 @@ const AlumniState = (props) => {
         }
     };
 
-    // Get registered users:
+    // Get list of registered people for a college
     const getUsers = async () => {
         try{
             const res = await axios.get('/api/college');
@@ -224,6 +244,43 @@ const AlumniState = (props) => {
     };
 
 
+   //get firends,request,to accept list
+    const getNotifications=async (id)=>{
+        try{
+            const res = await axios.get(`/api/notf/${id}`);
+            console.log(res)
+            dispatch({
+                type: LOAD_NOTIFICATIONS, payload: res.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALUMNI_ERROR,
+                payload: err.response
+            })
+        }
+    }
+
+    //send or accept request
+    const sendRequest= async (form)=>{
+        const config={
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }
+        try{
+            const res = await axios.put("/api/notf/req",form,config);
+            dispatch({
+                type: LOAD_NOTIFICATIONS, payload: res.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALUMNI_ERROR,
+                payload: err.response
+            })
+        }
+    }
 
     return(
         <AlumniContext.Provider
@@ -235,6 +292,7 @@ const AlumniState = (props) => {
                 filteredColleges: state.filteredColleges,
                 filteredAlumni: state.filteredAlumni,
                 error: state.error,
+                notification:state.notification,
                 getProfile,
                 getMyProfile,
                 getUsers,
@@ -249,7 +307,10 @@ const AlumniState = (props) => {
                 setCurrentAlumnusId,
                 setCurrentCollegeId,
                 sendEmail,
-                sendSms
+                sendSms,
+                getAuthUsers,
+                getNotifications,
+                sendRequest,
             }}>
                 {props.children}
             </AlumniContext.Provider>

@@ -13,7 +13,8 @@ import {
     CLEAR_COL_FILTER,
     CLEAR_AL_FILTER,
     SET_CURRENT_COLLEGE,
-    SET_CURRENT_ALUMNUS
+    SET_CURRENT_ALUMNUS,
+    LOAD_NOTIFICATIONS
 } from '../types';
 
 export default (state, action) => {
@@ -107,6 +108,11 @@ export default (state, action) => {
                 ...state,
                 currentAlumnusId : action.payload
             };
+        case LOAD_NOTIFICATIONS:
+            return{
+                ...state,
+                notification:action.payload
+            }
 
         default: 
             return state;

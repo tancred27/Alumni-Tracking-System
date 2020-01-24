@@ -7,6 +7,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
+const Notification=require('../models/Notification');
 
 // @router   POST api/users
 // @desc     Register a user
@@ -16,7 +17,7 @@ router.post('/',
     [
         check('name', 'Please enter a name!').not().isEmpty(),
         check('email', 'Please enter a valid email!').isEmail(),
-        check('password', 'Password length must be at least 8 characters!').isLength({min:8})
+        check('password', 'Password length must be at least 5 characters!').isLength({min:5})
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -45,9 +46,14 @@ router.post('/',
                 password
             });
 
+            const notf=new Notification({
+                id:user.id
+            })
+           
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
             await user.save();
+            await notf.save();
 
             const payload = {
                 user: {
@@ -63,11 +69,24 @@ router.post('/',
             });
 
         } catch (error) {
-            console.log(error.message);
+            console.log(error);
             res.status(500).send('Server Error!');
         }
     }
 );
+
+// @router   GET api/users/:id
+// @desc     get authenticated users
+// @access   Private
+router.get('/auth', auth, async(req, res) => {
+    try {
+        const users = await User.find({authenticated:true});
+        res.json(users)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Server Error!');
+    }
+});
 
 // @router   GET api/users/:id
 // @desc     Access any profile
@@ -81,6 +100,8 @@ router.get('/:id', auth, async(req, res) => {
         res.status(500).send('Server Error!');
     }
 });
+
+
 
 // @router   PUT api/users
 // @desc     Update a user
@@ -108,7 +129,7 @@ router.put('/', auth, async (req, res) => {
         res.json(user);
 
     } catch (error) {
-        console.log(error.message);
+        console.log(error.msg);
         res.status(500).send('Server Error!');
     }
 });

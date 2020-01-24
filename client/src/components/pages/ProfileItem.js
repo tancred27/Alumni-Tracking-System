@@ -61,8 +61,39 @@ const Profile=(props)=> {
     })
   }
   return ( (
+  const onClick=(e)=>{
+      console.log(authContext.user._id)
+    alumniContext.sendRequest({request:authContext.user._id,accept:_id})
+  }
+  
+ //alumniContext.users[0].const {name,branch,year,info}=alumniContext.users[0]
+
+ 
+ const {_id,name,branch,info}=props.user;
+ const alumniContext =useContext(AlumniContext);
+ const authContext =useContext(AuthContext);
+const renderButton=()=>{
+    const {friends,accept,request} =alumniContext.notification;
+    console.log(alumniContext.notification);
+    console.log(friends)
+      if(friends.indexOf(_id)!=-1){
+        return <center><button className="btn btn-outline-success disabled">Friends</button></center> 
+      }
+      else if(request.indexOf(_id)!=-1){
+        return <center><button className="btn btn-outline-primary"  onClick={onClick}>Requested</button></center> 
+      }
+      else if(accept.indexOf(_id)!=-1){
+        return <center><button className="btn btn-outline-info" onClick={onClick}>Accept</button></center> 
+      }
+      else{
+      return <center><button className="btn btn-outline-success" onClick={onClick}>Add Friend</button></center>
+      }
+   
     
-    <div className="container" >
+ }
+  return (
+    
+    
       <div className="row">
       
       <div className="col-lg-4 col-md-6 col-sm-12">
@@ -78,9 +109,9 @@ const Profile=(props)=> {
        </div>
       <div className="col-lg-2 col-md-6 col-sm-12">
             <div className="row my-4"></div>
-            <div className="my-3">
-            <center><button className="btn btn-outline-success">Add Friend</button></center> 
-            </div>
+            {props.alumni&&props.notf?<div className="my-3">{
+                renderButton()}
+            </div>:<div></div>}
             <div className="my-3">
             <center><button className="btn btn-outline-warning ">Chat</button></center> 
             </div>
@@ -110,8 +141,8 @@ const Profile=(props)=> {
        </div>
         
       </div>
-    </div>
-  ));
+    
+  );
 }
 
 export default Profile;
