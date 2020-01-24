@@ -13,7 +13,7 @@ const Home = (props) => {
     console.log(localStorage.token);
     const decoded = jwt.verify(localStorage.token, 'secrettoken');
     
-    if(decoded.college || decoded.direcorate){
+    if(decoded.college || decoded.directorate){
         return(
             <Fragment>
                 <EmailForm />
