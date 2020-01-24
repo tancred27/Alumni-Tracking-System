@@ -38,18 +38,18 @@ export default (state, action) => {
         case GET_PROFILE:
             return{
                 ...state,
-                users:[action.payload]
+                user : action.payload 
             }
         case GET_MY_PROFILE:
             return{
                 ...state,
-                user: action.payload
+                user : action.payload
             };
        
         case AUTHENTICATE:
             return{
                 ...state,
-                user: action.payload
+                user : action.payload
             };
         
         case FILTER_COLLEGES:

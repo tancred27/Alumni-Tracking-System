@@ -1,32 +1,38 @@
-import React, { useEffect, useContext } from 'react';
-import AuthContext from '../../context/auth/authContext';
+import React, { Fragment } from 'react';
 import jwt from 'jsonwebtoken';
+import EmailForm from './EmailForm';
+import SmsForm from './SmsForm';
+import ProfileItem from './ProfileItem';
+import { Redirect } from 'react-router-dom';
 
-const Home = () => {
+const Home = (props) => {
+    console.log(localStorage.getItem('token'));
+    if(!localStorage.getItem('token')){
+        return <Redirect to='/login' /> 
+    }else{
+    console.log(localStorage.token);
+    const decoded = jwt.verify(localStorage.token, 'secrettoken');
+    
+    if(decoded.college || decoded.direcorate){
+        return(
+            <Fragment>
+                <EmailForm />
+                <br></br>
+                <SmsForm />
+            </Fragment>
+        )
+    }
 
-    const authContext = useContext(AuthContext);
-    const { loadUser } = authContext;
-    useEffect(()=>{
-        if(localStorage.token){
-            const decoded = jwt.verify(localStorage.token, 'secrettoken');
-            if(decoded.user){
-                loadUser(2)
-            }
-            else if(decoded.college){
-                loadUser(1)
-            }
-            else{
-                loadUser(3)
-            }
-        }
-        //eslint-disable-next-line
-    }, []);
+    else{
+        return (
+            <div>
+                Home
+            </div>
+        )
+    }
 
-    return (
-        <div>
-            <h1>Home</h1>
-        </div>
-    )
+}
+    
 };
 
 export default Home

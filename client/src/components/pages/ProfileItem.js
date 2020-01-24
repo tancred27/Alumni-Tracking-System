@@ -1,12 +1,65 @@
-import React,{useContext,useEffect} from 'react';
-import AlumniContext from '../../context/alumni/alumniContext'
+import React,{ useContext, useEffect, useState} from 'react';
+import AlumniContext from '../../context/alumni/alumniContext';
+import AuthContext from '../../context/auth/authContext';
+import jwt from 'jsonwebtoken';
+
 
 const Profile=(props)=> {
+
   const onChange=(props)=>{}
+  const authContext = useContext(AuthContext);
+  const { loadUser, user } = authContext;
+  const alumniContext = useContext(AlumniContext);
+  const { authenticateUser } = alumniContext;
+  const {name,branch,info, _id}=props.user
+
+  useEffect(() => {
+    if(localStorage.token){
+        const decoded = jwt.verify(localStorage.token, 'secrettoken');
+        if(decoded.user){
+          loadUser(2)
+        }
+        else if(decoded.college){
+          loadUser(1)
+        }
+        else{
+          loadUser(3)
+        }
+    }
+    // eslint-disable-next-line
+}, []);
+
+  let color = 'dark';
+  let text = 'Authenticate';
+  let disabled = false;
+
+  if(props.user.authenticated){
+    color = 'primary';
+    text = 'Authenticated'; 
+    disabled = true
+  }
+
+  const [auth, setAuth] = useState({
+    col: color,
+    tex: text,
+    dis: disabled
+  })
   
- //alumniContext.users[0].const {name,branch,year,info}=alumniContext.users[0]
- const {name,branch,info}=props.user
- 
+  if(user.isUser || user.isDirectorate){
+    setAuth({
+      dis: true
+    })
+  }
+  
+
+  const authBoi=()=>{
+    authenticateUser(props.user)
+    setAuth({
+      col: 'primary',
+      tex: 'Authenticated',
+      dis: true
+    })
+  }
   return ( (
     
     <div className="container" >
@@ -30,6 +83,9 @@ const Profile=(props)=> {
             </div>
             <div className="my-3">
             <center><button className="btn btn-outline-warning ">Chat</button></center> 
+            </div>
+            <div className="my-3">
+            <center><button onClick={authBoi} disabled={auth.dis} className={'btn btn-outline-'+auth.col}>{auth.tex}</button></center> 
             </div>
         </div>
         <div className="col-lg-6 md-hide sm-hide bg-primary badge">

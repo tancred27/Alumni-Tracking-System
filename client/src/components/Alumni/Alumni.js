@@ -13,7 +13,9 @@ const Alumni = (props) => {
     const { user, loadUser } = authContext;
     const alumniContext = useContext(AlumniContext);
     
-    const { alumni, getAlumni, filteredAlumni, currentCollegeId } = alumniContext;
+    const { alumni, getAlumni, filteredAlumni  } = alumniContext;
+
+    const id = props.match.params.id;
 
     useEffect(() => {
         if(localStorage.token){
@@ -29,7 +31,7 @@ const Alumni = (props) => {
             }
         }
         try{
-            getAlumni(props.id || user._id);
+            getAlumni(id || user._id);
         }
         catch(err){
            console.log(err.message);
@@ -45,15 +47,19 @@ const Alumni = (props) => {
     return (
         <Fragment>
             <AlumniFilter />
-            <TransitionGroup>
+            <br></br>
+            <div style={userStyle}>
             {(filteredAlumni || alumni).map(alumnus => (
-                <CSSTransition key={alumnus._id} classNames="item" timeout={500}>
-                    <AlumnusItem alumnus={alumnus}  />
-                </CSSTransition>
-            ))}
-            </TransitionGroup>
+                <AlumnusItem alumnus={alumnus}  />
+            ))} </div>
         </Fragment>
     );
+};
+
+const userStyle = {
+    display : 'grid',
+    gridTemplateColumns : 'repeat(3, 1fr)',
+    gridGap : '1.5rem'
 };
 
 export default Alumni;

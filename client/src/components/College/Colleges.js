@@ -43,15 +43,22 @@ const Colleges = () => {
     return (
         <Fragment>
             <CollegeFilter />
+            <br></br>
             <TransitionGroup>
             {(filteredColleges || colleges).map(college => (
                 <CSSTransition key={college._id} classNames="item" timeout={500}>
                     <CollegeItem college={college} />
                 </CSSTransition>
-            ))}
+            ))} 
             </TransitionGroup>
         </Fragment>
     );
 };
+
+/*const userStyle = {
+    display : 'grid',
+    gridTemplateColumns : 'repeat(3, 1fr)',
+    gridGap : '1.5rem'
+};*/
 
 export default Colleges;

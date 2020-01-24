@@ -22,6 +22,7 @@ import {
 
 const AlumniState = (props) => {
     const initialState = {
+        user: null,
         users: [],
         alumni: [],
         colleges: [],
@@ -77,6 +78,40 @@ const AlumniState = (props) => {
             payload: id
         })
     };
+
+    // Send Email
+    const sendEmail = async formData => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'     
+            }
+        }
+        try {
+            const res = await axios.put('/api/dir', formData, config);
+            console.log(res);
+            
+        } catch (error) {
+            console.log("email sending error :" + error);
+        }
+    };
+
+    // Send Sms
+    const sendSms = async formData => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'     
+            }
+        }
+        try {
+            const res = await axios.put('/api/dir/1', formData, config);
+            console.log(res);
+            
+        } catch (error) {
+            console.log("SMS sending error :" + error);
+        }
+    };
+
+    
 
     // Get Alumni:
     const getAlumni = async id => {
@@ -193,6 +228,7 @@ const AlumniState = (props) => {
     return(
         <AlumniContext.Provider
             value= {{
+                user: state.user,
                 users: state.users,
                 alumni: state.alumni,
                 colleges: state.colleges,
@@ -211,7 +247,9 @@ const AlumniState = (props) => {
                 clearAlFilter,
                 clearColFilter,
                 setCurrentAlumnusId,
-                setCurrentCollegeId
+                setCurrentCollegeId,
+                sendEmail,
+                sendSms
             }}>
                 {props.children}
             </AlumniContext.Provider>

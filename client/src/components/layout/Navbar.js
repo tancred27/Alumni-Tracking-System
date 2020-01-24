@@ -22,8 +22,10 @@ const Navbar = ({ title, icon }) => {
 
     const userLinks = (
         <Fragment>
+            <li><Link to='/'>Home</Link></li>
             <li><Link to = '/'>Profile</Link></li>
             <li><Link to='/about'>About</Link></li>
+            <li><Link to='/colleges'>Colleges</Link></li>
             <li>
                 <a onClick={onLogout} href="/#!">
                     <i className="fas fa-sign-out-alt"></i> <span className="hide-sm">Logout</span>
@@ -34,6 +36,7 @@ const Navbar = ({ title, icon }) => {
 
     const collegeLinks = (
         <Fragment>
+            <li><Link to='/'>Home</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li><Link to='/users'>Users</Link></li>
             <li><Link to='/alumni'>Alumni</Link></li>
@@ -48,6 +51,7 @@ const Navbar = ({ title, icon }) => {
 
     const dirLinks = (
         <Fragment>
+            <li><Link to='/'>Home</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li><Link to='/colleges'>Colleges</Link></li>
             <li>
@@ -102,7 +106,6 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
     title: 'Alumni Tracking',
-    icon: 'fas fa-id-card-alt'
+    icon: 'fas fa-users'
 }
-
 export default Navbar

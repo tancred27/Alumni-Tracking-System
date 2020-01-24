@@ -59,7 +59,7 @@ const Login = (props) => {
     return (
         <div className="card">
             <h1>
-                Account <span className="text-light">Login</span>
+                Account <span className="text-primary">Login</span>
             </h1>
             <form onSubmit={onSubmit}>
                 <div className="form-group">

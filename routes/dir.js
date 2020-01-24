@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-
+const nodemailer = require('nodemailer');
+const Nexmo = require('nexmo');
 const User = require('../models/User');
 const College = require('../models/College');
 const Dir = require('../models/Directorate');
@@ -69,6 +70,74 @@ router.get('/', auth, async(req, res) => {
     try {
         const colleges = await College.find();
         res.json(colleges);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Server Error!');
+    }
+});
+
+// @router   PUT api/dir
+// @desc     Send Email to a user
+// @access   Private
+router.put('/', auth, async(req, res) => {
+    try {
+
+        const recipient = req.body.email;
+        let sub = req.body.subject;
+        let message = req.body.text;
+        
+        console.log("recipient = " + recipient);
+
+        var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'viswa.es27@gmail.com',
+            pass: 'gmaillogin12'
+        }
+        });
+
+        var mailOptions = {
+        from: 'viswa.es27@gmail.com',
+        to: recipient,
+        subject: sub,
+        text: message
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            res.send(error);
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.send(info.response);
+        }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Server Error!');
+    }
+});
+
+// @router   PUT api/dir/1
+// @desc     Send SMS to user
+// @access   Private
+router.put('/1', async(req, res) => {
+    try {
+
+       // const recipient = req.body.to;
+       // const message = req.body.text;
+
+        const nexmo = new Nexmo({
+        apiKey: '537ad656',
+        apiSecret: 'rAqNo7LisoVIb3IE'
+        });
+
+        const from = 'Nexmo';
+        const to = '919381582890';
+        const text = 'Hello from Nexmo';
+
+        nexmo.message.sendSms(from, to, text);
+        res.send('done')
     } catch (error) {
         console.log(error);
         res.status(500).send('Server Error!');

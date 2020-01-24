@@ -1,37 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import AlumniContext from '../../context/alumni/alumniContext';
-import { Route, Redirect,Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const AlumnusItem =(props) => {
-    const alumniContext = useContext(AlumniContext);
-    const { setCurrentAlumnusId } = alumniContext;
-    const { _id, name, college, year, branch } =props.alumnus;
+    const { _id, name, college, phone, branch } =props.alumnus;
     
-   const onClick=(e)=>{
-    setCurrentAlumnusId(_id);
-    console.log('onClick')
-    console.log(props)
-    //props.history.push('/profile')
-   }
 
     return (
-        <div className="card bg-light">
-            <h3 className="text-primary text-left">
-                Name: {name}
-            </h3>
+        <div className="card text-left">
             <ul className="list">
-                College:<li>
-                    <i className="fas fa-envelope-open"></i> {college}
-                </li>
-                Branch:<li>
-                    <i className="fas fa-phone"></i> {branch}
-                </li>
-                Year:<li>
-                    <i className="fas fa-phone"></i> {year}
-                </li>
-                <div>
-            <Link to={`/profile/${_id}`}><button type="button" value="View Profile" onClick={onClick}>View Profile</button></Link>
+                <li><h4>Name: <span className="text text-primary">{name}</span></h4></li>
+                <li><i className="fas fa-graduation-cap"></i><strong>College: </strong>{college}</li>
+                <li><i className="fas fa-code-branch"></i><strong>Branch: </strong>{branch}</li>
+                <li><i className="fas fa-phone"></i><strong>Contact: </strong>{phone}</li>
+            <div>
+            <Link to={`/profile/${_id}`}><button type="button" className="btn btn-dark" value="View Profile">View Profile</button></Link>
             </div>
             </ul>
         </div>
@@ -45,4 +28,3 @@ AlumnusItem.propTypes = {
 
 
 export default AlumnusItem;
-//<input type="submit" onClick = {onClick} value="Profile" className="btn btn-dark btn-block"/>
