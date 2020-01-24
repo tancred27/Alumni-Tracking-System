@@ -19,7 +19,20 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/college', require('./routes/colleges'));
 app.use('/api/dir', require('./routes/dir'));
+app.use('/api/notf', require('./routes/Notification'));
 
 app.listen(PORT, () => console.log(`Server started on Port : ${PORT}`));
 
+const io=require('socket.io')(3003)
+
+io.on('connection',socket=>{
+    console.log('new user')
+    socket.on('joined',msg=>{
+        socket.broadcast.emit('reply',msg + " :joined")
+    })
+    socket.on('message',msg=>{
+        socket.broadcast.emit('reply',msg)
+        console.log(msg)
+    })
+})
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 //import AlumniContext from '../../context/alumni/AlumniContext';
 
 const UserItem = ({ alumnus }) => {
     //const alumniContext = useContext(AlumniContext);
-    const { name, college, year, branch } = alumnus;
+    const { _id,name, college, year, branch } = alumnus;
 
     return (
         <div className="card bg-light">
@@ -22,6 +23,7 @@ const UserItem = ({ alumnus }) => {
                     <i className="fas fa-phone"></i> {year}
                 </li>)}
             </ul>
+           <Link to={`/profile/${_id}`}><input type="button" className="btn btn-dark" value="Profile"/></Link> 
         </div>
     );
 };

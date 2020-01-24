@@ -23,6 +23,7 @@ const Navbar = ({ title, icon }) => {
     const userLinks = (
         <Fragment>
             <li><Link to = '/'>Profile</Link></li>
+            <li><Link to='/users'>Users</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li>
                 <a onClick={onLogout} href="/#!">

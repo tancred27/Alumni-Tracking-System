@@ -14,7 +14,7 @@ const Alumni = () => {
     const alumniContext = useContext(AlumniContext);
     
     const { alumni, getAlumni, filteredAlumni, currentCollegeId } = alumniContext;
-
+    
     useEffect(() => {
         if(localStorage.token){
             const decoded = jwt.verify(localStorage.token, 'secrettoken');
