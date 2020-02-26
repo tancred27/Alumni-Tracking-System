@@ -85,19 +85,16 @@ router.put('/', auth, async(req, res) => {
         const recipient = req.body.email;
         let sub = req.body.subject;
         let message = req.body.text;
-        
-        console.log("recipient = " + recipient);
-
         var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host : 'webmail.tanc.tk',
         auth: {
-            user: 'viswa.es27@gmail.com',
-            pass: 'gmaillogin12'
+            user: 'tancred@tanc.tk',
+            pass: '9JmtVjm_Gjr39rdj'
         }
         });
 
         var mailOptions = {
-        from: 'viswa.es27@gmail.com',
+        from: 'tancred@tanc.tk',
         to: recipient,
         subject: sub,
         text: message

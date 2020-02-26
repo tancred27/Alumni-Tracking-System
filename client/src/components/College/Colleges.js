@@ -37,7 +37,7 @@ const Colleges = () => {
     }, []);
 
     if(colleges.length === 0){
-        return <h4>Please add a contact!</h4>
+        return <h4>Loading!</h4>
     }
 
     return (
@@ -54,11 +54,5 @@ const Colleges = () => {
         </Fragment>
     );
 };
-
-/*const userStyle = {
-    display : 'grid',
-    gridTemplateColumns : 'repeat(3, 1fr)',
-    gridGap : '1.5rem'
-};*/
 
 export default Colleges;

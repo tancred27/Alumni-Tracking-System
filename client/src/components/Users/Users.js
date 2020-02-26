@@ -17,23 +17,21 @@ const Users = () => {
     useEffect(() => {
         if(localStorage.token){
             const decoded = jwt.verify(localStorage.token, 'secrettoken');
-            console.log(decoded)
             if(decoded.user){
                 tokenid=2;
-                authContext.loadUser(2)
-                console.log('okieee');
+                authContext.loadUser(2);
             }
             
             else if(decoded.college){
                 tokenid=1;
-                authContext.loadUser(1)
+                authContext.loadUser(1);
             }
             else{
                 tokenid=3;
-                authContext.loadUser(3)
+                authContext.loadUser(3);
             }
         }
-        console.log(tokenid)
+    
         try{
             if(tokenid==1)
             getUsers(user._id);

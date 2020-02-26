@@ -6,11 +6,10 @@ import Profile from './Profile';
 import { Redirect } from 'react-router-dom';
 
 const Home = (props) => {
-    console.log(localStorage.getItem('token'));
     if(!localStorage.getItem('token')){
         return <Redirect to='/login' /> 
     }else{
-    console.log(localStorage.token);
+
     const decoded = jwt.verify(localStorage.token, 'secrettoken');
     
     if(decoded.college || decoded.directorate){

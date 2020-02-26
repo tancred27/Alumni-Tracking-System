@@ -36,7 +36,7 @@ const ProfileItem=(props)=> {
   let disabled = false;
 
   if(props.user.authenticated || user.isUser || user.isDirectorate){
-    color = 'primary';
+    color = 'success';
     text = 'Authenticated'; 
     disabled = true
   }
@@ -52,51 +52,27 @@ const ProfileItem=(props)=> {
   const authBoi=()=>{
     authenticateUser(props.user)
     setAuth({
-      col: 'primary',
+      col: 'success',
       tex: 'Authenticated',
       dis: true
     })
   }
   
   const onClick=(e)=>{
-      console.log(user._id)
-      console.log(_id)
     alumniContext.sendRequest({request:user._id,accept:_id})
   }
 
   const profile=()=>{
     return(
-    <div className="">
-    <div className="my-3">
-  <label>name:</label>
-  <h4>{name}</h4>
-  </div>
-    <div className="my-3">
-    <label>email:</label>
-  <h4>{email}</h4>
-    </div>
-    <div className="my-3">
-    <label>college:</label>
-  <h4>{college}</h4>
-    </div>
-    <div className="my-3">
-    <label>phone:</label>
-  <h4>{phone}</h4>
-    </div>
-    <div className="my-3">
-    <label>DOB:</label>
-  <h4>{dob}</h4>
-    </div>
-    <div className="my-3">
-    <label>company:</label>
-  <h4>{company}</h4>
-    </div>
-    <div className="my-3">
-    <label>info:</label>
-  <h4>{info}</h4>
-    </div>
-
-    </div>
+      <div className = "sup">
+        <h2>Name : {name}</h2><br></br>
+        <h2>Email: {email}</h2><br></br>
+        <h2>College : {college}</h2><br></br>
+        <h2>Phone : {phone}</h2><br></br>
+        <h2>DOB : {dob}</h2><br></br>
+        <h2>Company : {company}</h2><br></br>
+        <h2>Information : {info}</h2>
+      </div>
     )
   }
 
@@ -110,7 +86,6 @@ const ProfileItem=(props)=> {
 
 
 const onChange = e => {
-  console.log(e.target.value)
   setOoser({ ...ooser, [e.target.name]: e.target.value })}
   const onSubmit = (e) => {
     e.preventDefault();
@@ -139,14 +114,10 @@ const onChange = e => {
   
   const bool=()=>{
     bol=!bol
-    setBoll(bol)
-    console.log("helno");
-    
+    setBoll(bol);
   } 
 const renderButton=()=>{
     const {friends,accept,request} =alumniContext.notification;
-    console.log(alumniContext.notification);
-    console.log(friends)
       if(friends.indexOf(_id)!=-1){
         return <center><button className="btn btn-outline-success disabled">Friends</button></center> 
       }
@@ -162,56 +133,27 @@ const renderButton=()=>{
  }
 
   return (
-    
-    
-      <div className="row">
-      
-      <div className="col-lg-4 col-md-6 col-sm-12">
-      
-          <div className="profile-userpic my-3">
-           <center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWYWW2DyiDmeF1qF3yvDU771PU0AoHWbBB6Vnz9EW8UJBwfKx8ag&s" style={{minWidth:'150px',maxWidth:'150px'}} className="rounded-circle img-thumbnail" alt=""/></center> 
-          </div>
-          <div className="text-center">
-          <h3>{name}</h3>
-          <h3>{branch}</h3>
-          </div>
-    
-       </div>
-      <div className="col-lg-2 col-md-6 col-sm-12">
-            <div className="row my-4"></div>
-            {props.alumni&&props.notf?<div className="my-3">{
-                renderButton()}
-            </div>:<div></div>}
-            {!user.isUser?<div className="my-3">
-            <center><Link to="/"><button className="btn btn-danger" >contact</button></Link></center> 
-            </div>:<div></div>}
-            <div className="my-3">
-            <center><button onClick={authBoi} disabled={auth.dis} className={'btn btn-outline-'+auth.col}>{auth.tex}</button></center> 
+      <div className="card grid-2">
+        <div className="all-center">
+          <img src= "https://i.4pcdn.org/tv/1485796767156.jpg"  className='round-img' alt='' style={{width: '150px'}} />
+          <h1>{name}</h1>
+          {props.alumni&&props.notf?<div>{
+            renderButton()}
+          </div>:<div></div>}
+            {!user.isUser?<div>
+            <center><Link to="/"><button className="btn btn-danger">contact</button></Link></center> 
+            </div>:<div></div>}<br></br>
+            <div>
+              <center><button onClick={authBoi} disabled={auth.dis} className={'btn btn-'+auth.col}>{auth.tex}</button></center> 
             </div>
-        </div>
-        <div className="col-lg-6 md-hide sm-hide bg-primary badge">
-        <div >
-        <h2 className="text-gray-dark">Currently working at</h2>
-        <h3>{company}</h3>
-        </div>
-        </div>
-        <div className="col-lg-12 col-md-12 sm-hide align-items-lg-end">
-        <nav>
-        <div className="nav nav-tabs" id="nav-tab" role="tablist">
-
-  <ul className="nav nav-pills">
-  <li ><button onClick={bool} className={"btn"+(!boll?"":"btn-primary")}>Home</button></li>
-  
-</ul>
-          
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-            {profile()}
-      </div>
        </div>
+       <div className="my-3">
+       <div className='badge badge-light'>{profile()}</div>
+       </div>
+      </div> 
+  
         
-      </div>
+      
     
   );
 }
@@ -221,3 +163,6 @@ export default ProfileItem;
 //<nav class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" aria-selected="true" onClick={bool}>Profile</nav>
   //        <nav class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" aria-selected="false" onClick={bool}>Edit</nav>
   //<li>{user.isCollege?<button onClick={bool} className={"btn"+(boll?"":"btn-primary")}>Edit</button>:<div></div>}</li>
+
+  //<div className="my-3">
+//  <div className='badge badge-primary'>{profile()}</div>

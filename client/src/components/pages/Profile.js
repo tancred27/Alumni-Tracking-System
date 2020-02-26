@@ -9,7 +9,6 @@ const Profile = (props) => {
   const authContext =useContext(AuthContext);
   let alumni=false;
   useEffect(()=>{
-    console.log(props.match.params.id)
     alumniContext.getProfile(props.match.params.id);
    
     
@@ -28,7 +27,7 @@ const Profile = (props) => {
       console.log('not authorized')
     }
   
-  console.log(alumni)
+
   return (
     <Fragment>{(alumniContext.user)&&(alumni!=true||alumniContext.notification)?
       <ProfileItem user={alumniContext.user} notf={alumniContext.notification} alumni={alumni}/>:<h2>loading</h2>}

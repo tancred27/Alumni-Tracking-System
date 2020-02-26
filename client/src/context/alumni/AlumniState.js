@@ -108,8 +108,7 @@ const AlumniState = (props) => {
         }
         try {
             const res = await axios.put('/api/dir', formData, config);
-            console.log(res);
-            
+
         } catch (error) {
             console.log("email sending error :" + error);
         }
@@ -124,7 +123,6 @@ const AlumniState = (props) => {
         }
         try {
             const res = await axios.put('/api/dir/1', formData, config);
-            console.log(res);
             
         } catch (error) {
             console.log("SMS sending error :" + error);
@@ -248,7 +246,7 @@ const AlumniState = (props) => {
     const getNotifications=async (id)=>{
         try{
             const res = await axios.get(`/api/notf/${id}`);
-            console.log(res)
+
             dispatch({
                 type: LOAD_NOTIFICATIONS, payload: res.data
             })

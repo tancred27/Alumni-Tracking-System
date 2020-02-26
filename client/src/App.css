@@ -6,13 +6,23 @@
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
-  --success-color: #28a745;
+  --success-color: #5FE871;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.sup {
+  text-align: left;
+}
+
+.cardx {
+  padding: 1rem;
+  border: black 1px dotted;
+  margin: 0.7rem 0;
 }
 
 body {
@@ -114,6 +124,7 @@ img {
   padding: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
 }
 
 /* On mouse-over, add a deeper shadow */

@@ -70,7 +70,6 @@ router.get('/', auth, async(req, res) => {
         if(!college){
             return res.status(404).json({ msg: "college found'nt "});
         }
-        console.log(college)
         const alumni = await User.find({ college: college.name ,authenticated:false})
         res.json(alumni);
     } catch (error) {

@@ -87,7 +87,6 @@ router.put('/req',auth,async(req,res)=>{
 router.get('/:id',auth,async(req,res)=>{
     try{
         const notf= await Notification.findOne({id:req.params.id});
-        console.log(notf);
         res.send({friends:notf.Friends,accept:notf.Accept,request:notf.Request});
     }catch(err){
         console.error(err.name+':'+err.message);
