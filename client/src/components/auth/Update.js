@@ -64,12 +64,12 @@ const Update = (props) => {
                     <input type="password" value={password} name="password" onChange={onChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="company">Company</label><h1></h1>
-                    <input type="company" value={company} name="company" onChange={onChange} />
+                    <label htmlFor="company">Company</label>
+                    <input type="text" value={company} name="company" onChange={onChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="info">Info</label><h1></h1>
-                    <input type="info" value={info} name="info" onChange={onChange} />
+                    <label htmlFor="info">Info</label>
+                    <input type="text" value={info} name="info" onChange={onChange} />
                 </div>
                
                 <input type="submit" value="Update" className="btn btn-dark btn-block"/>

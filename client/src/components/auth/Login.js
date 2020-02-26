@@ -10,9 +10,7 @@ const Login = (props) => {
 
     const { setAlert } = alertContext;
     const { login, error, clearErrors, isAuthenticated } = authContext;
-    /* useEffect(()=>{
-     loadUser(1);
-    },[]) */
+    
     useEffect(() => {
         if(isAuthenticated){
             props.history.push('/');
@@ -64,11 +62,11 @@ const Login = (props) => {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email Address</label>
-                    <input type="email" value={email} name="email" onChange={onChange} />
+                    <input type="email" value={email} name="email" onChange={onChange} required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" value={password} name="password" onChange={onChange} />
+                    <input type="password" value={password} name="password" onChange={onChange} required />
                 </div>
                 <div className="form-group">
                     <h4>Logging in as: </h4><br></br>
