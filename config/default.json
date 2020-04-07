@@ -1,5 +1,4 @@
-
 {
-    "mongoURI": "mongodb+srv://tancred123:tancred123@aumnitrackingsystem-o7xmu.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "secrettoken"
+  "mongoURI": "mongodb+srv://tancred123:tancred123@aumnitrackingsystem-o7xmu.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secrettoken"
 }

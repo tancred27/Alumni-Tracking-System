@@ -1,6 +1,6 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const path = require('path');
+const express = require("express");
+const connectDB = require("./config/db");
+const path = require("path");
 const app = express();
 
 // Connect database:
@@ -11,22 +11,20 @@ app.use(express.json({ extended: false }));
 
 //app.get('/', (req, res) => res.send("Hello World!"));
 
-
-
 // Define Routes:
-app.use('/api/users', require('./routes/users'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/college', require('./routes/colleges'));
-app.use('/api/dir', require('./routes/dir'));
-app.use('/api/notf', require('./routes/Notification'));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/college", require("./routes/colleges"));
+app.use("/api/dir", require("./routes/dir"));
+app.use("/api/notf", require("./routes/Notification"));
 
-if(process.env.NODE_ENV==='production'){
-    app.use(express.static('client/build'))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
-    app.use('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
+  app.use("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
 }
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on Port : ${PORT}`));
-
